@@ -10,8 +10,9 @@
 
   <div class="bg-white p-8 rounded-2xl shadow-lg max-w-lg w-full">
     <h1 class="text-2xl font-bold mb-6 text-center text-blue-600">Student Organization Registration</h1>
+    
     <form id="orgForm" class="space-y-4">
-
+      
       <div>
         <label class="block text-sm font-medium">Full Name</label>
         <input type="text" name="fullName" required class="w-full p-2 border rounded-lg">
@@ -53,6 +54,7 @@
         Submit
       </button>
     </form>
+
     <p id="message" class="mt-4 text-center text-green-600 hidden">Form submitted successfully!</p>
   </div>
 
@@ -63,8 +65,7 @@
     form.addEventListener("submit", function(e) {
       e.preventDefault();
 
-      // === OPTION 1: Send to Google Sheets via Apps Script Web App ===
-      fetch("https://script.google.com/macros/s/AKfycbyqSJyrE8zr0rkWBItLIF9eyibwwafvGeQeFSu88_rGtw_m7eRz8VEALoOnNURuqdu-/exec", {
+      fetch("YOUR_WEB_APP_URL_HERE", {
         method: "POST",
         body: new FormData(form)
       })
@@ -79,4 +80,3 @@
 
 </body>
 </html>
-
