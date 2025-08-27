@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Organization Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white p-8 rounded-2xl shadow-lg max-w-lg w-full">
+    <h1 class="text-2xl font-bold mb-6 text-center text-blue-600">Student Organization Registration</h1>
+    <form id="orgForm" class="space-y-4">
+
+      <div>
+        <label class="block text-sm font-medium">Full Name</label>
+        <input type="text" name="fullName" required class="w-full p-2 border rounded-lg">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">School / University</label>
+        <input type="text" name="school" required class="w-full p-2 border rounded-lg">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Organization</label>
+        <input type="text" name="organization" required class="w-full p-2 border rounded-lg">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Position</label>
+        <select name="position" required class="w-full p-2 border rounded-lg">
+          <option value="">Select position</option>
+          <option value="President">President</option>
+          <option value="Vice President">Vice President</option>
+          <option value="Secretary">Secretary</option>
+          <option value="Treasurer">Treasurer</option>
+          <option value="Member">Member</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Email</label>
+        <input type="email" name="email" required class="w-full p-2 border rounded-lg">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Contact Number</label>
+        <input type="tel" name="phone" required class="w-full p-2 border rounded-lg">
+      </div>
+
+      <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-lg font-medium hover:bg-blue-700 transition">
+        Submit
+      </button>
+    </form>
+    <p id="message" class="mt-4 text-center text-green-600 hidden">Form submitted successfully!</p>
+  </div>
+
+  <script>
+    const form = document.getElementById("orgForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // === OPTION 1: Send to Google Sheets via Apps Script Web App ===
+      fetch("YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL", {
+        method: "POST",
+        body: new FormData(form)
+      })
+      .then(res => res.text())
+      .then(() => {
+        message.classList.remove("hidden");
+        form.reset();
+      })
+      .catch(err => alert("Error: " + err));
+    });
+  </script>
+
+</body>
+</html>
